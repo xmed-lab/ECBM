@@ -14,14 +14,13 @@ Xinyue Xu, Yi Qin, Lu Mi, Hao Wang, Xiaomeng Li
 <p align="center">
 <img src="fig/figure-v7-1.png" alt="" width="80%"/>
 </p>
-
-**Top:** During training, ECBM learns positive concept embeddings $\mathbf{v}_k^{(+)}$ (in black), negative concept embeddings $\mathbf{v}_k^{(-)}$ (in white), the class embeddings $\mathbf{u}_m$ (in black), and the three energy networks by minimizing the three energy functions, $E_{\bold{\theta}}^{class}(\mathbf{x}, \mathbf{y})$, $E_{\bold{\theta}}^{concept}(\mathbf{x}, \mathbf{c})$, and $E_{\bold{\theta}}^{global}(\mathbf{c}, \mathbf{y})$ using the total loss function. The concept $\mathbf{c}$ and class label $\mathbf{y}$ are treated as constants. 
+**Top:** During training, ECBM learns positive concept embeddings ${v}_k^{(+)}$ (in black), negative concept embeddings ${v}_k^{(-)}$ (in white), the class embeddings $\mathbf{u}_m$ (in black), and the three energy networks by minimizing the three energy functions, $E_{{\theta}}^{class}({x}, {y})$, $E_{{\theta}}^{concept}({x}, {c})$, and $E_{{\theta}}^{global}({c}, {y})$ using the total loss function. The concept $\mathbf{c}$ and class label $\mathbf{y}$ are treated as constants. 
 
 **Bottom:** During inference, we (1) freeze all concept and class embeddings as well as all networks, and (2) update the predicted concept probabilities $\widehat{\mathbf{c}}$ and class probabilities $\widehat{\mathbf{y}}$ by minimizing the three energy functions using the total loss function.
 
 The total loss function:
 
-$\mathcal{L}_{total}^{all} = \mathbb{E}_{(\mathbf{x},\mathbf{c},\mathbf{y}) \sim p_{\mathcal{D}}(\mathbf{x},\mathbf{c},\mathbf{y})}[\mathcal{L}_{total}(\mathbf{x}, \mathbf{c},\mathbf{y})]$.
+${L}_{total}^{all} = {E}_{({x},{c},{y}) \sim p_{{D}}({x},{c},{y})}[{L}_{total}({x}, {c},{y})]$.
 
 ## Installation
 
@@ -79,6 +78,7 @@ Performance with different ratios of intervened concepts on three datasets (with
 <p align="center">
 <img src="fig/concept-confidence-demo-fig-v2-1.png" alt="" width="80%"/>
 </p>
+Marginal concept importance for top $3$ concepts of $4$ different classes computed using Proposition 3.2. ECBM's estimation (Ours) is very close to the ground truth (Oracle).
 
 ## Reference
 
