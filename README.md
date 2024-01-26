@@ -1,5 +1,5 @@
 # Energy-Based Concept Bottleneck Models: Unifying Prediction, Concept Intervention, and Conditional Interpretations (ECBMs)
-This repo is the official implementation for our ICLR 2024 paper:
+This repo is the official implementation of our ICLR 2024 paper:
 
 [**Energy-Based Concept Bottleneck Models: Unifying Prediction, Concept Intervention, and Conditional Interpretations**](https://openreview.net/forum?id=I1quoTXZzc)
 
@@ -7,13 +7,15 @@ Xinyue Xu, Yi Qin, Lu Mi, Hao Wang, Xiaomeng Li
 
 *Twelfth International Conference on Learning Representations (ICLR), 2024.*
 
-[[Paper]()] [[OpenReview](https://openreview.net/forum?id=I1quoTXZzc))] [[PPT]()]
+[[Paper](https://arxiv.org/abs/2401.14142)] [[OpenReview](https://openreview.net/forum?id=I1quoTXZzc))] [[PPT]()]
 
 ## Overview of our ECBM
 
 <p align="center">
 <img src="fig/figure-v7-1.png" alt="" width="80%"/>
 </p>
+
+
 **Top:** During training, ECBM learns positive concept embeddings (in black), negative concept embeddings (in white), the class embeddings (in black), and the three energy networks by minimizing the three energy functions, using the total loss function. The concept and class label are treated as constants. 
 
 **Bottom:** During inference, we (1) freeze all concept and class embeddings as well as all networks, and (2) update the predicted concept probabilities and class probabilities by minimizing the three energy functions using the total loss function.
@@ -22,7 +24,7 @@ Xinyue Xu, Yi Qin, Lu Mi, Hao Wang, Xiaomeng Li
 
 ### Prerequisites
 
-We run all experiments on single NVIDIA RTX3090 GPU. 
+We run all experiments on a single NVIDIA RTX3090 GPU. 
 
 ```python
 pip install -r requirements.txt
@@ -39,7 +41,7 @@ pip install -r requirements.txt
  Configurations are in [config.json](./config.json) file.
  - Hyperparameter search, set sweep = true.
  - Select dataset, set dataset='TARGET DATASET'.
- - If or not using pretrained weight, pretrained = ture.
+ - If or not using pretrained weight, pretrained = true.
  - Freeze backbone, set freezebb = true.
  - emb_size: the feature size after the feature encoder.
  - hid_size: projected feature size.
@@ -50,6 +52,14 @@ pip install -r requirements.txt
 ```python
 python main.py
 ```
+
+
+
+**TODO:**
+
+Currently cleaning all experimental code. Will be released in a few weeks.
+
+
 
 ## Results
 
@@ -78,7 +88,14 @@ Marginal concept importance for top 3 concepts of 4 different classes computed u
 
 ## Reference
 
-TODO
+@misc{xu2024energybased,
+      title={Energy-Based Concept Bottleneck Models: Unifying Prediction, Concept Intervention, and Conditional Interpretations}, 
+      author={Xinyue Xu and Yi Qin and Lu Mi and Hao Wang and Xiaomeng Li},
+      year={2024},
+      eprint={2401.14142},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV}
+}
 
 
 
