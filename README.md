@@ -88,6 +88,7 @@ Marginal concept importance for top 3 concepts of 4 different classes computed u
 
 ## Reference
 
+```latex
 @misc{xu2024energybased,
       title={Energy-Based Concept Bottleneck Models: Unifying Prediction, Concept Intervention, and Conditional Interpretations}, 
       author={Xinyue Xu and Yi Qin and Lu Mi and Hao Wang and Xiaomeng Li},
@@ -96,6 +97,9 @@ Marginal concept importance for top 3 concepts of 4 different classes computed u
       archivePrefix={arXiv},
       primaryClass={cs.CV}
 }
+```
+
+
 
 
 
