@@ -124,7 +124,7 @@ Marginal concept importance for top 3 concepts of 4 different classes computed u
 
 ## Reference
 
-```latex
+```bib
 @inproceedings{ECBM,
       title={Energy-Based Concept Bottleneck Models: Unifying Prediction, Concept Intervention, and Probabilistic Interpretations}, 
       author={Xu, Xinyue and Qin, Yi and Mi, Lu and Wang, Hao and Li, Xiaomeng},
