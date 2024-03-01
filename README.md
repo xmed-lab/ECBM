@@ -1,7 +1,7 @@
-# Energy-Based Concept Bottleneck Models: Unifying Prediction, Concept Intervention, and Conditional Interpretations (ECBMs)
+# Energy-Based Concept Bottleneck Models: Unifying Prediction, Concept Intervention, and Probabilistic Interpretations (ECBMs)
 This repo is the official implementation of our ICLR 2024 paper:
 
-[**Energy-Based Concept Bottleneck Models: Unifying Prediction, Concept Intervention, and Conditional Interpretations**](https://openreview.net/forum?id=I1quoTXZzc)
+[**Energy-Based Concept Bottleneck Models: Unifying Prediction, Concept Intervention, and Probabilistic Interpretations**](https://openreview.net/forum?id=I1quoTXZzc)
 
 Xinyue Xu, Yi Qin, Lu Mi, Hao Wang, Xiaomeng Li
 
@@ -16,7 +16,7 @@ Xinyue Xu, Yi Qin, Lu Mi, Hao Wang, Xiaomeng Li
 </p>
 
 
-**Top:** During training, ECBM learns positive concept embeddings (in black), negative concept embeddings (in white), the class embeddings (in black), and the three energy networks by minimizing the three energy functions, using the total loss function. The concept and class label are treated as constants. 
+**Top:** During training, ECBM learns positive concept embeddings (in black), negative concept embeddings (in white), class embeddings (in black), and the three energy networks by minimizing the three energy functions, using the total loss function. The concept and class label are treated as constants. 
 
 **Bottom:** During inference, we (1) freeze all concept and class embeddings as well as all networks, and (2) update the predicted concept probabilities and class probabilities by minimizing the three energy functions using the total loss function.
 
@@ -24,7 +24,7 @@ Xinyue Xu, Yi Qin, Lu Mi, Hao Wang, Xiaomeng Li
 
 ### Prerequisites
 
-We run all experiments on a single NVIDIA RTX3090 GPU. 
+We run all experiments on NVIDIA RTX3090 GPU. 
 
 ```python
 pip install -r requirements.txt
@@ -32,34 +32,70 @@ pip install -r requirements.txt
 
 ### Dataset Preperation
 
+Please specify the dataset folder path at [data_util.py](./data/data_util.py)
+
 + [**CUB**](https://worksheets.codalab.org/bundles/0x518829de2aa440c79cd9d75ef6669f27)
+
 + [**CelebA**](https://mmlab.ie.cuhk.edu.hk/projects/CelebA.html)
+
 + [**AWA2**](https://cvml.ista.ac.at/AwA2/)
+
+  [gen_awa2_split.py](./data/gen_awa2_split.py) is used for split training, validation and testing data for AwA2.
 
 ## Configuration
 
- Configurations are in [config.json](./config.json) file.
- - Hyperparameter search, set sweep = true.
+ Configurations are in [{dataset}/{dataset_inference}.json](./configs/{dataset}.json) file.
  - Select dataset, set dataset='TARGET DATASET'.
- - If or not using pretrained weight, pretrained = true.
- - Freeze backbone, set freezebb = true.
+ - If using pretrained weight, pretrained = true.
  - emb_size: the feature size after the feature encoder.
  - hid_size: projected feature size.
  - cpt_size: the number of concepts.
 
 ## Run Experiments
 
+### 1. Training
+
+Training our ECBM, please run
+
 ```python
-python main.py
+python main.py --dataset [cub/awa2/celeba]
 ```
 
+### 2. Inference 
 
+Running the gradient inference, please specify the trained weight at exp folder (change "trained_weight" to the last ckpt):
 
-**TODO:**
+```python
+python GradientInference.py --dataset [cub/awa2/celeba]
+```
 
-Currently cleaning all experimental code. Will be released in a few weeks.
+### 3. Interventions
 
+#### Individual Intervention
 
+```python
+python GradientInference.py --dataset [cub/awa2/celeba] --intervene_type individual --missingratio [0.1, 0.9]
+```
+
+OR
+
+```sh
+./run_intervene_missing.sh
+```
+
+#### Group Intervention 
+
+Only for CUB dataset, CelebA and AWA2 do not have grouped concepts.
+
+```python
+python GradientInference.py --dataset cub --intervene_type group --missingratio [0.1, 0.9]
+```
+
+### 4. Interpretations
+
+**Proposition 3.2:** Use [CalcImportanceScore.py](./CalcImportanceScore.py) to generate c_gt/c_pred/y_gt/y_pred.npy.
+
+**Proposition 3.3/3.4/3.5:** Plot heatmaps by [plot_correlation.ipynb](plot_correlation.ipynb) and [plot_joint.ipynb](plot_joint.ipynb).
 
 ## Results
 
@@ -89,13 +125,11 @@ Marginal concept importance for top 3 concepts of 4 different classes computed u
 ## Reference
 
 ```latex
-@misc{xu2024energybased,
-      title={Energy-Based Concept Bottleneck Models: Unifying Prediction, Concept Intervention, and Conditional Interpretations}, 
-      author={Xinyue Xu and Yi Qin and Lu Mi and Hao Wang and Xiaomeng Li},
-      year={2024},
-      eprint={2401.14142},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
+@inproceedings{ECBM,
+      title={Energy-Based Concept Bottleneck Models: Unifying Prediction, Concept Intervention, and Probabilistic Interpretations}, 
+      author={Xu, Xinyue and Qin, Yi and Mi, Lu and Wang, Hao and Li, Xiaomeng},
+      booktitle={International Conference on Learning Representations},
+      year={2024}
 }
 ```
 
