@@ -34,13 +34,16 @@ pip install -r requirements.txt
 
 Please specify the dataset folder path at [data_util.py](./data/data_util.py)
 
-+ [**CUB**](https://worksheets.codalab.org/bundles/0x518829de2aa440c79cd9d75ef6669f27)
++ [**CUB**](https://data.caltech.edu/records/65de6-vp158)
+  Follow vanilla [CBMs](https://github.com/yewsiang/ConceptBottleneck/blob/master/CUB/README.md) pre-preprocessing CUB data, you can get train/val/test split.
 
 + [**CelebA**](https://mmlab.ie.cuhk.edu.hk/projects/CelebA.html)
 
 + [**AWA2**](https://cvml.ista.ac.at/AwA2/)
 
   [gen_awa2_split.py](./data/gen_awa2_split.py) is used for split training, validation and testing data for AwA2.
+
++ [**TravelingBirds**](https://worksheets.codalab.org/bundles/0x518829de2aa440c79cd9d75ef6669f27) CUB_fixed folder 
 
 ## Configuration
 
