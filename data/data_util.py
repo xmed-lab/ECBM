@@ -24,11 +24,11 @@ def get_dataset(args):
         
         val_loader = load_cub_data([VAL_PKL], use_attr=True, no_img=False, 
                 batch_size=args.batch_size, uncertain_label=False, image_dir=CUB_DATA_DIR, resol=299, normalizer=normalizer,
-                n_classes=num_classes, resampling=True)
+                n_classes=num_classes, resampling=False)
 
         test_loader = load_cub_data([TEST_PKL], use_attr=True, no_img=False, 
                 batch_size=args.batch_size, uncertain_label=False, image_dir=CUB_DATA_DIR, resol=299, normalizer=normalizer,
-                n_classes=num_classes, resampling=True)
+                n_classes=num_classes, resampling=False)
 
         print(len(train_loader.dataset), "training set size")
         print(len(val_loader.dataset), "val set size")
